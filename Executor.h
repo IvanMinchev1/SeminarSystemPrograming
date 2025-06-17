@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Task.h"
-
 #include <memory>
 #include "Executor.h"
 #include "TaskSystem.hpp"
@@ -18,6 +17,8 @@
 #include <thread>
 #include <chrono>
 #include <cstdio>
+
+
 namespace TaskSystem {
 
 
@@ -55,18 +56,3 @@ struct TaskSystemExecutor;
 
 
 };
-
-/**
- * @brief Each executor library must define OnLibraryInit function that will be called once on load
- *        It should be used to register the executor in the TaskSystemExecutor
- *
- */
-typedef void (*OnLibraryInitPtr)(TaskSystem::TaskSystemExecutor &);
-
-#if defined(_WIN32) || defined(_WIN64)
-#define DLL_EXPORT __declspec(dllexport)
-#else
-#define DLL_EXPORT
-#endif
-
-#define IMPLEMENT_ON_INIT() extern "C" DLL_EXPORT void OnLibraryInit(TaskSystem::TaskSystemExecutor &ts)

@@ -1,11 +1,7 @@
-// ============================================================================
-// TaskSystem – lock‑free, cache‑friendly (POSIX‑only) – v3.2 (MODIFIED + SHARED EXECUTION)
-// ============================================================================
 #pragma once
 
 #include "Task.h"
 #include "Executor.h"
-
 #include <atomic>
 #include <cassert>
 #include <cstdint>
@@ -147,7 +143,6 @@ private:
             }
 
             if (fatalError) {
-                // Принудително маркираме задачата като завършена, за да не блокира системата
                 finalize(tc);
             }   
         }
@@ -203,7 +198,7 @@ public:
         tc->priority = std::clamp(pr, 0, MAX_PRIO);
         tc->exec.reset(ctor(std::move(t)));
         tc->budget.store(QUANTUM);
-        tc->tid.raw = reinterpret_cast<uintptr_t>(tc); // взимаме адреса на TaskControl като уникален идентификатор
+        tc->tid.raw = reinterpret_cast<uintptr_t>(tc); 
 
         push_task(tc);
         return tc->tid;
@@ -272,4 +267,4 @@ private:
 
 TaskSystemExecutor* TaskSystemExecutor::self = nullptr;
 
-} // namespace TaskSystem
+}

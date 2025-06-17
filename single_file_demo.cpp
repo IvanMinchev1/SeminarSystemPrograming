@@ -1,8 +1,6 @@
-// ============================================================================
-// single_file_demo.cpp — статистики + trace + heatmap (с цветен терминал)
-// ============================================================================
-
 #include "TaskSystem.hpp"
+#include "Executor.h"
+#include "Task.h"
 #include <cstdio>
 #include <thread>
 #include <chrono>
@@ -90,9 +88,6 @@ void print_statistics() {
     }
     std::puts("==========================\n");
 }
-
-#include "Executor.h"
-#include "Task.h"
 
 struct PrinterTask : public Task {
     int start = 0, end = 0;
