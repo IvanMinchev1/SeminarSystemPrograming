@@ -140,7 +140,7 @@
 
 ## ⚙️ Инструкции за Компилация на macOS (Clang)
 
-- clang++ -std=c++20 -O2 -pthread single_file_demo.cpp -o task_system
-- ./task_system
+- `clang++ -std=c++20 -O2 -pthread single_file_demo.cpp -o task_system`
+- `./task_system`
 
 
